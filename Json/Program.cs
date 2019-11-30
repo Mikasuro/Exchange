@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
 using Newtonsoft.Json;
+using System.Threading;
+using System.IO;
+
 namespace JSON
 {
     class HttpDownloader
@@ -16,6 +19,7 @@ namespace JSON
             this.address = address;
             client.BaseAddress = new Uri(address);
         }
+
         public string Load(string method)
         {
             var task = client.GetStringAsync(method);
@@ -60,14 +64,42 @@ namespace JSON
         static HttpDownloader MoexDownloader = new HttpDownloader("https://iss.moex.com/");
         static void Main(string[] args)
         {
-            for (int i =0; ; i+=100)
+            string sec = Environment.CurrentDirectory + @"\sec.txt";
+            List<Security> securities = new List<Security>();
+            if (File.Exists(sec))
             {
-                var tmp = LoadSecuritiesFrom(i);
-                if (tmp.Length == 0) { break; }
-                foreach(var s in tmp)
+                var path = JsonConvert.DeserializeObject<Security[]>(File.ReadAllText(sec));
+                securities.AddRange(path);
+                Console.WriteLine(securities.Count);
+            }
+            else
+            {
+                int threadCount = Environment.ProcessorCount * 10;
+                ThreadPool.SetMinThreads(threadCount, threadCount);
+                DateTime dt = DateTime.Now;
+                for (int i = 0; ; i += 100 * threadCount)
                 {
-                    Console.WriteLine(s);
+                    bool hasEmpty = false;
+                    var allTasks = new Task<Security[]>[threadCount];
+                    Parallel.For(0, threadCount, (j) =>
+                    {
+                        allTasks[j] = Task.Run<Security[]>(() => LoadSecuritiesFrom(i + j * 100));
+                    });
+                    foreach (var item in allTasks)
+                    {
+                        if (item.Result.Length == 0)
+                        {
+                            hasEmpty = true;
+                            break;
+                        }
+                        securities.AddRange(item.Result);
+                    }
+                    if (hasEmpty) { break; }
                 }
+                Console.WriteLine(securities.Count);
+                string file = JsonConvert.SerializeObject(securities);
+                File.WriteAllText("sec.txt", file);
+                Console.WriteLine((dt - DateTime.Now).TotalSeconds);
             }
         }
 
