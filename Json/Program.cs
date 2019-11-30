@@ -7,15 +7,33 @@ using System.Net.Http;
 using Newtonsoft.Json;
 namespace JSON
 {
+    class HttpDownloader
+    {
+        private readonly string address;
+        HttpClient client = new HttpClient();
+        public HttpDownloader(string address)
+        {
+            this.address = address;
+            client.BaseAddress = new Uri(address);
+        }
+        public string Load(string method)
+        {
+            var task = client.GetStringAsync(method);
+            return task.Result;
+        }
+    }
     class Program
     {
-        static void Main(string[] args)
+        static string LoadSecutiryFrom(int start)
         {
-            var client = new HttpClient();
-            client.BaseAddress = new Uri("https://iss.moex.com/iss/securities.json?start=100");
-            var task = client.GetStringAsync("https://iss.moex.com/iss/securities.json?start=100");
-            var json = task.Result;
-            var root = JsonConvert.DeserializeObject<Security>(json);
+            var url = string.Format("iss/securities.json?start={0}", start);
+            return MoexDownloader.Load(url);
+        }
+
+        static Security[] LoadSecuritiesFrom(int start)
+        {
+            var result = LoadSecutiryFrom(start);
+            var root = JsonConvert.DeserializeObject<Security>(result);
             var securities = root.securities.data.Select(
                 d => new Security
                 {
@@ -37,9 +55,19 @@ namespace JSON
                     marketprice_boardid = d[15] as string,
                 }
                 ).ToArray();
-            foreach (var item in securities)
+            return securities;
+        }
+        static HttpDownloader MoexDownloader = new HttpDownloader("https://iss.moex.com/");
+        static void Main(string[] args)
+        {
+            for (int i =0; ; i+=100)
             {
-                Console.WriteLine(item);
+                var tmp = LoadSecuritiesFrom(i);
+                if (tmp.Length == 0) { break; }
+                foreach(var s in tmp)
+                {
+                    Console.WriteLine(s);
+                }
             }
         }
 
