@@ -13,5 +13,7 @@ C:\Users\pibop0117002\source\repos\JSON2\Exchange\obj\Debug\Exchange.csproj.Gene
 C:\Users\pibop0117002\source\repos\JSON2\Exchange\obj\Debug\Exchange.csproj.CoreCompileInputs.cache
 C:\Users\pibop0117002\source\repos\JSON2\Exchange\obj\Debug\Exchange.exe
 C:\Users\pibop0117002\source\repos\JSON2\Exchange\obj\Debug\Exchange.pdb
-C:\Users\pibop0117002\source\repos\JSON2\Exchange\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\pibop0117002\source\repos\JSON2\Exchange\obj\Debug\App.baml
+C:\Users\pibop0117002\Source\Repos\JSON2\Exchange\bin\Debug\Newtonsoft.Json.dll
+C:\Users\pibop0117002\Source\Repos\JSON2\Exchange\bin\Debug\Newtonsoft.Json.xml
+C:\Users\pibop0117002\Source\Repos\JSON2\Exchange\obj\Debug\Exchange.csproj.CopyComplete

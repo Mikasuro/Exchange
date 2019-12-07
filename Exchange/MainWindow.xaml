@@ -10,42 +10,31 @@
     <DockPanel>
         <Grid DockPanel.Dock="Top">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height ="auto"/>
-                <RowDefinition Height ="*"/>
-                <RowDefinition Height ="*"/>
-            </Grid.RowDefinitions>
-            <TextBlock Grid.Column="0" Grid.Row="0" Text="Название" FontSize="20"/>
-            <Grid Grid.Row="1" Grid.ColumnSpan="2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <TextBox Grid.Column="1" Grid.Row="0" FontSize="20" Margin="2" BorderBrush="Black"/>
-                <TextBox Grid.Column="3" Grid.Row="0" FontSize="20" Margin="2" BorderBrush="Black"/>
-                <TextBlock Grid.Column="0" Grid.Row="0" Text="Макс цена" FontSize="20"/>
-                <TextBlock Grid.Column="2" Grid.Row="0" Text="Мин цена" FontSize="20"/>
-            </Grid>
-            <TextBox Grid.Column="1" Grid.Row="0" FontSize="20" Margin="2" BorderBrush="Black"/>
-            <Button Grid.Row="2" Grid.ColumnSpan="2"  Height="30" Width="100" Background="LightBlue" Content="Найти"/>
+            <TextBlock Grid.Column="0" Text="Название" FontSize="20"/>
+            <TextBox Grid.Column="1" FontSize="20" Margin="2" BorderBrush="Black"/>
         </Grid>
-        <DataGrid x:Name="phonesGrid" AutoGenerateColumns="True">
-            <DataGrid.Items>
-                <local:Table/>
-                <local:Table/>
-                <local:Table/>
-                <local:Table/>
-            </DataGrid.Items>
+        <UniformGrid Columns="4" DockPanel.Dock="Top">
+            <TextBlock Text="Мин цена" FontSize="20"/>
+            <TextBox FontSize="20" Margin="2" BorderBrush="Black"/>
+            <TextBlock Text="Макс цена" FontSize="20"/>
+            <TextBox FontSize="20" Margin="2" BorderBrush="Black"/>
+        </UniformGrid>
+        <Button DockPanel.Dock="Top"  Height="30" Margin="2" Background="LightBlue" Content="Найти"/>
+        <DataGrid x:Name="stocksGrid" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="*"/>
+                <DataGridTextColumn Header="*" Binding="{Binding Num}"/>
                 <DataGridHyperlinkColumn Header="Название" Width="*"/>
-                <DataGridTextColumn Header="Цена" Width="200"/>
-                <DataGridTextColumn Header="Перейти" Width="100"/>
+                <DataGridTextColumn Header="Цена" Width="200" Binding="{Binding Price}"/>
+                <DataGridTemplateColumn Header="Перейти">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                                <Button Content="преолрп"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
         

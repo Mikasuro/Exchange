@@ -13,21 +13,21 @@ namespace JSON
     public class Metadata
     {
         public Id id { get; set; }
-        public Secid secid { get; set; }
-        public Shortname shortname { get; set; }
-        public Regnumber regnumber { get; set; }
-        public Name name { get; set; }
-        public Isin isin { get; set; }
+        public ColumnMetadata secid { get; set; }
+        public ColumnMetadata shortname { get; set; }
+        public ColumnMetadata regnumber { get; set; }
+        public ColumnMetadata name { get; set; }
+        public ColumnMetadata isin { get; set; }
         public Is_Traded is_traded { get; set; }
         public Emitent_Id emitent_id { get; set; }
-        public Emitent_Title emitent_title { get; set; }
-        public Emitent_Inn emitent_inn { get; set; }
-        public Emitent_Okpo emitent_okpo { get; set; }
-        public Gosreg gosreg { get; set; }
+        public ColumnMetadata emitent_title { get; set; }
+        public ColumnMetadata emitent_inn { get; set; }
+        public ColumnMetadata emitent_okpo { get; set; }
+        public ColumnMetadata gosreg { get; set; }
         public Type type { get; set; }
-        public Group group { get; set; }
-        public Primary_Boardid primary_boardid { get; set; }
-        public Marketprice_Boardid marketprice_boardid { get; set; }
+        public ColumnMetadata group { get; set; }
+        public ColumnMetadata primary_boardid { get; set; }
+        public ColumnMetadata marketprice_boardid { get; set; }
     }
     public class Security
     {
@@ -61,41 +61,12 @@ namespace JSON
         public string type { get; set; }
     }
 
-    public class Secid
+    public class ColumnMetadata
     {
         public string type { get; set; }
         public int bytes { get; set; }
         public int max_size { get; set; }
     }
-
-    public class Shortname
-    {
-        public string type { get; set; }
-        public int bytes { get; set; }
-        public int max_size { get; set; }
-    }
-
-    public class Regnumber
-    {
-        public string type { get; set; }
-        public int bytes { get; set; }
-        public int max_size { get; set; }
-    }
-
-    public class Name
-    {
-        public string type { get; set; }
-        public int bytes { get; set; }
-        public int max_size { get; set; }
-    }
-
-    public class Isin
-    {
-        public string type { get; set; }
-        public int bytes { get; set; }
-        public int max_size { get; set; }
-    }
-
     public class Is_Traded
     {
         public string type { get; set; }
@@ -105,61 +76,4 @@ namespace JSON
     {
         public string type { get; set; }
     }
-
-    public class Emitent_Title
-    {
-        public string type { get; set; }
-        public int bytes { get; set; }
-        public int max_size { get; set; }
-    }
-
-    public class Emitent_Inn
-    {
-        public string type { get; set; }
-        public int bytes { get; set; }
-        public int max_size { get; set; }
-    }
-
-    public class Emitent_Okpo
-    {
-        public string type { get; set; }
-        public int bytes { get; set; }
-        public int max_size { get; set; }
-    }
-
-    public class Gosreg
-    {
-        public string type { get; set; }
-        public int bytes { get; set; }
-        public int max_size { get; set; }
-    }
-
-    public class Type
-    {
-        public string type { get; set; }
-        public int bytes { get; set; }
-        public int max_size { get; set; }
-    }
-
-    public class Group
-    {
-        public string type { get; set; }
-        public int bytes { get; set; }
-        public int max_size { get; set; }
-    }
-
-    public class Primary_Boardid
-    {
-        public string type { get; set; }
-        public int bytes { get; set; }
-        public int max_size { get; set; }
-    }
-
-    public class Marketprice_Boardid
-    {
-        public string type { get; set; }
-        public int bytes { get; set; }
-        public int max_size { get; set; }
-    }
-
 }

@@ -1,7 +1,10 @@
-﻿using System;
+﻿
+using Exchange.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace Exchange
 {
     /// <summary>
@@ -20,15 +24,18 @@ namespace Exchange
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static void Load()
+        {
+            SecutirysLoader a = new SecutirysLoader();
+        }
+
         public MainWindow()
         {
             InitializeComponent();
+            Thread thread = new Thread(new ThreadStart(Load));
+            stocksGrid.ItemsSource = new[] {
+                new { Num = 1, Price = 10 }
+            };
         }
-    }
-    public class Table
-    {
-        public int Number { get; set; }
-        public string Title { get; set; }
-        public int Price { get; set; }
     }
 }
