@@ -1,0 +1,54 @@
+﻿<Window x:Class="Exchange.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Exchange"
+        xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="600" MinHeight="450" MaxHeight="450" MinWidth="650" MaxWidth="650">
+    <DockPanel>
+        <Grid DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height ="auto"/>
+                <RowDefinition Height ="*"/>
+                <RowDefinition Height ="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Column="0" Grid.Row="0" Text="Название" FontSize="20"/>
+            <Grid Grid.Row="1" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBox Grid.Column="1" Grid.Row="0" FontSize="20" Margin="2" BorderBrush="Black"/>
+                <TextBox Grid.Column="3" Grid.Row="0" FontSize="20" Margin="2" BorderBrush="Black"/>
+                <TextBlock Grid.Column="0" Grid.Row="0" Text="Макс цена" FontSize="20"/>
+                <TextBlock Grid.Column="2" Grid.Row="0" Text="Мин цена" FontSize="20"/>
+            </Grid>
+            <TextBox Grid.Column="1" Grid.Row="0" FontSize="20" Margin="2" BorderBrush="Black"/>
+            <Button Grid.Row="2" Grid.ColumnSpan="2"  Height="30" Width="100" Background="LightBlue" Content="Найти"/>
+        </Grid>
+        <DataGrid x:Name="phonesGrid" AutoGenerateColumns="True">
+            <DataGrid.Items>
+                <local:Table/>
+                <local:Table/>
+                <local:Table/>
+                <local:Table/>
+            </DataGrid.Items>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="*"/>
+                <DataGridHyperlinkColumn Header="Название" Width="*"/>
+                <DataGridTextColumn Header="Цена" Width="200"/>
+                <DataGridTextColumn Header="Перейти" Width="100"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        
+    </DockPanel>
+
+</Window>
