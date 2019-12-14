@@ -58,7 +58,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\CurrentPrice.cs" />
+    <Compile Include="Model\CurrentPrices.cs" />
+    <Compile Include="Model\RootObject.cs" />
     <Compile Include="Services\HttpDownloader.cs" />
+    <Compile Include="Services\PriceLoader.cs" />
     <Compile Include="Services\SecutirysLoader.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -74,13 +78,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\ColumnMetadata.cs" />
-    <Compile Include="Model\Emitent_Id.cs" />
-    <Compile Include="Model\Id.cs" />
-    <Compile Include="Model\Is_Traded.cs" />
-    <Compile Include="Model\Metadata.cs" />
-    <Compile Include="Model\Rootobject.cs" />
-    <Compile Include="Model\Securities.cs" />
     <Compile Include="Model\Security.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

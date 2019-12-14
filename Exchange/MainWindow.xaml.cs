@@ -1,8 +1,11 @@
 ﻿
+using Exchange.Model;
 using Exchange.Services;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -22,20 +25,56 @@ namespace Exchange
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        public static void Load()
+        private List<Security> _securities;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public List<Security> Securities
         {
-            SecutirysLoader a = new SecutirysLoader();
+            get => _securities;
+            set
+            {
+                _securities = value;
+                OnPropertyChanged();
+            }
+        }
+        void OnPropertyChanged([CallerMemberName] string propName="")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
 
-        public MainWindow()
+        public void LoadSecuritys()
+        {
+            SecutirysLoader secutirysLoader = new SecutirysLoader();
+            Securities = secutirysLoader.LoadSecutiry()
+                .Where(sec => sec.group == "stock_shares" && sec.is_traded == 1 )
+                .ToList();
+
+            
+
+        }
+        public void LoadPrices()
+        {
+            PriceLoader priceloader = new PriceLoader();
+            var prices = priceloader.LoadPrice()
+                .Where( price => price.boardId == "TQBR")
+                .GroupBy(cp => cp.secId, cp => cp)
+                .Select( gr => gr.OrderBy( price=> price.tradeTime).Last());
+
+            //    .Where(sec => sec.group == "stock_shares" && sec.is_traded == 1)
+             //   .ToList();
+        }
+
+            public MainWindow()
         {
             InitializeComponent();
-            Thread thread = new Thread(new ThreadStart(Load));
-            stocksGrid.ItemsSource = new[] {
-                new { Num = 1, Price = 10 }
-            };
+            DataContext = this;
+            Thread threadSecuritys = new Thread(new ThreadStart(LoadSecuritys));
+            Thread threadPrices = new Thread(new ThreadStart(LoadPrices));
+            threadSecuritys.Start();
+            threadPrices.Start();
         }
     }
 }

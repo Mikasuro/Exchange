@@ -14,15 +14,15 @@ namespace Exchange.Services
     {
         public string LoadSecutiryFrom(int start)
         {
-            var url = string.Format("iss/securities.json?start={0}", start);
+            var url = string.Format("iss/securities.json?is_traded=1&start={0}", start);
             return MoexDownloader.Load(url);
         }
 
         public Security[] LoadSecuritiesFrom(int start)
         {
             var result = LoadSecutiryFrom(start);
-            var root = JsonConvert.DeserializeObject<Security>(result);
-            var securities = root.securities.data.Select(
+            var root = JsonConvert.DeserializeAnonymousType(result, new { Securities =  new RootObject() });
+            var securities = root.Securities.data.Select(
                 d => new Security
                 {
                     id = Convert.ToInt32(d[0]),
@@ -47,13 +47,14 @@ namespace Exchange.Services
         }
         static HttpDownloader MoexDownloader = new HttpDownloader("https://iss.moex.com/");
         
-        public void LoadSecutiry()
+
+        public List<Security> LoadSecutiry()
         {
-            string sec = Environment.CurrentDirectory + @"\sec.txt";
+            string securityFile = Environment.CurrentDirectory + @"\sec.txt";
             List<Security> securities = new List<Security>();
-            if (File.Exists(sec))
+            if (File.Exists(securityFile))
             {
-                var path = JsonConvert.DeserializeObject<Security[]>(File.ReadAllText(sec));
+                var path = JsonConvert.DeserializeObject<Security[]>(File.ReadAllText(securityFile));
                 securities.AddRange(path);
             }
             else
@@ -80,11 +81,10 @@ namespace Exchange.Services
                     }
                     if (hasEmpty) { break; }
                 }
-                Console.WriteLine(securities.Count);
                 string file = JsonConvert.SerializeObject(securities);
                 File.WriteAllText("sec.txt", file);
-                Console.WriteLine((dt - DateTime.Now).TotalSeconds);
             }
+            return securities;
         }
     }
 }

@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Exchange.Model
 {
-    class Rootobject
+    class RootObject
     {
-        public Securities securities { get; set; }
+        public string[] columns { get; set; }
+        public object[][] data { get; set; }
     }
 }

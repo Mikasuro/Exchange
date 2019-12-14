@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Exchange.Model
 {
-    class Security
+    public class Security
     {
-        public Securities securities { get; set; }
         public int id { get; set; }
         public string secid { get; set; }
         public string shortname { get; set; }
