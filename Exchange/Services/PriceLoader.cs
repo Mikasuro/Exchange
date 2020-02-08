@@ -73,7 +73,7 @@ namespace Exchange.Services
                     if (hasEmpty) { break; }
                 }
                 string file = JsonConvert.SerializeObject(securities);
-                File.WriteAllText("sec.txt", file);
+                File.WriteAllText("Price.txt", file);
             }
             return securities;
         }

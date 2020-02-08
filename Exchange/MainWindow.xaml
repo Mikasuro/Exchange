@@ -31,7 +31,7 @@
                 <DataGridTemplateColumn Header="Перейти">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                                <Button Content="преолрп"/>
+                                <Button Content="преолрп" Click="Button_Click"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

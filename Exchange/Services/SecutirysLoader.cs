@@ -59,10 +59,10 @@ namespace Exchange.Services
             }
             else
             {
-                int threadCount = Environment.ProcessorCount * 10;
+                int threadCount = Environment.ProcessorCount * 2;
                 ThreadPool.SetMinThreads(threadCount, threadCount);
                 DateTime dt = DateTime.Now;
-                for (int i = 0; ; i += 100 * threadCount)
+                for (int i = 0;i < 1000 ; i += 100 * threadCount)
                 {
                     bool hasEmpty = false;
                     var allTasks = new Task<Security[]>[threadCount];

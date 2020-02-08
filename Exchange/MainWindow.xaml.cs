@@ -72,9 +72,16 @@ namespace Exchange
             InitializeComponent();
             DataContext = this;
             Thread threadSecuritys = new Thread(new ThreadStart(LoadSecuritys));
-            Thread threadPrices = new Thread(new ThreadStart(LoadPrices));
+            //Thread threadPrices = new Thread(new ThreadStart(LoadPrices));
             threadSecuritys.Start();
-            threadPrices.Start();
+           // threadPrices.Start();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Window1 window = new Window1((sender as Button).DataContext as Security);
+            window.ShowDialog();
+
         }
     }
 }
