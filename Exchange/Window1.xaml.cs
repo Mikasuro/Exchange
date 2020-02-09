@@ -1,4 +1,5 @@
 ﻿using Exchange.Model;
+using Exchange.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,7 @@ namespace Exchange
     /// </summary>
     public partial class Window1 : Window
     {
+       
         public Window1()
         {
             InitializeComponent();
@@ -27,8 +29,21 @@ namespace Exchange
         public Window1(Security security)
         {
             InitializeComponent();
+            TradeLoader tradeLoader = new TradeLoader();
+            var trade = tradeLoader.LoadTradesFrom(security.secid);
             tbName.Text = security.name;
             tbSecId.Text = security.secid;
+            string bordid;
+            foreach (var item in trade)
+            {
+
+            }
+            tbBordid.Text = bordid;
+            //tbQuanitity.Text = string.Format("{0}", item.quanitity);
+            //tbPrice.Text = string.Format("{0}", item.price);
+            //tbTradeTime.Text = string.Format("{0}", item.tradeTime);
+            
+           
         }
     }
 }

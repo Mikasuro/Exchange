@@ -10,17 +10,17 @@ namespace Exchange.Services
 {
     class TradeLoader
     {
-        public string LoadTradeFrom(int start)
+        public string LoadTradeFrom(string AFLT)
         {
-            var url = string.Format("iss/statistics/engines/stock/currentprices.json?start={0}", start);
+            var url = string.Format("iss/engines/stock/markets/shares/securities/{0}/trades.json", AFLT);
             return MoexDownloader.Load(url);
         }
 
-        public Trades[] LoadTradesFrom(int start)
+        public Trades[] LoadTradesFrom(string AFLT)
         {
-            var result = LoadTradeFrom(start);
+            var result = LoadTradeFrom(AFLT);
             var root = JsonConvert.DeserializeAnonymousType(result, new { CurrentPrices = new RootObject() });
-            var prices = root.CurrentPrices.data.Select(
+            var trades = root.CurrentPrices.data.Select(
                 d => new Trades
                 {
                     secid = d[1] as string,
@@ -31,7 +31,7 @@ namespace Exchange.Services
                     tradeName = d[6] as string,
                 }
                 ).ToArray();
-            return prices;
+            return trades;
         }
         static HttpDownloader MoexDownloader = new HttpDownloader("https://iss.moex.com/");
     }

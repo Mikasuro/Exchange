@@ -28,3 +28,4 @@ C:\Users\pibop0117002\Source\Repos\JSON2\Json\obj\Debug\Json.csproj.CopyComplete
 C:\Users\pibop0117002\Source\Repos\JSON2\Json\obj\Debug\Json.exe
 C:\Users\pibop0117002\Source\Repos\JSON2\Json\obj\Debug\Json.pdb
 C:\Users\pibop0117002\Source\Repos\JSON\Json\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Максим\source\repos\JSON2\Json\obj\Debug\Json.g.resources
