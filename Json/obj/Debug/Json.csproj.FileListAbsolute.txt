@@ -4,7 +4,6 @@ C:\Users\Максим\source\repos\JSON2\Json\bin\Debug\Json.exe.config
 C:\Users\Максим\source\repos\JSON2\Json\bin\Debug\Json.exe
 C:\Users\Максим\source\repos\JSON2\Json\bin\Debug\Json.pdb
 C:\Users\Максим\source\repos\JSON2\Json\bin\Debug\Newtonsoft.Json.dll
-C:\Users\Максим\source\repos\JSON2\Json\bin\Debug\Newtonsoft.Json.pdb
 C:\Users\Максим\source\repos\JSON2\Json\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Максим\source\repos\JSON2\Json\obj\Debug\Json.csproj.CopyComplete
 C:\Users\Максим\source\repos\JSON2\Json\obj\Debug\Json.exe

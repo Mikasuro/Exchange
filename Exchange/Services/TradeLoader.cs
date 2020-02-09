@@ -1,4 +1,5 @@
 ﻿using Exchange.Model;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,23 +16,23 @@ namespace Exchange.Services
             return MoexDownloader.Load(url);
         }
 
-        public Trades[] LoadTradeFrom(int start)
+        public Trades[] LoadTradesFrom(int start)
         {
-            var result = LoadPriceFrom(start);
+            var result = LoadTradeFrom(start);
             var root = JsonConvert.DeserializeAnonymousType(result, new { CurrentPrices = new RootObject() });
             var prices = root.CurrentPrices.data.Select(
-                d => new CurrentPrice
+                d => new Trades
                 {
-                    tradeDate = Convert.ToDateTime(d[0]),
-                    secId = d[1] as string,
-                    boardId = d[2] as string,
+                    secid = d[1] as string,
+                    boardid = d[2] as string,
                     tradeTime = Convert.ToDateTime(d[3]),
-                    curPrice = Convert.ToDouble(d[4]),
-                    lastPrice = Convert.ToDouble(d[5]),
-                    legalClose = Convert.ToDouble(d[6]),
+                    price = Convert.ToDouble(d[4]),
+                    quanitity = Convert.ToDouble(d[5]),
+                    tradeName = d[6] as string,
                 }
                 ).ToArray();
             return prices;
         }
+        static HttpDownloader MoexDownloader = new HttpDownloader("https://iss.moex.com/");
     }
 }
