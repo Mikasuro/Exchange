@@ -33,17 +33,18 @@ namespace Exchange
             var trade = tradeLoader.LoadTradesFrom(security.secid);
             tbName.Text = security.name;
             tbSecId.Text = security.secid;
-            string bordid;
-            foreach (var item in trade)
+            var total = 0;
+            if (trade != null)
             {
-
+                foreach (var item in trade)
+                {
+                    item.price = Convert.ToDouble(item.price);
+                    item.quanitity = Convert.ToInt32(item.quanitity);
+                    item.tradeTime = Convert.ToDateTime(item.tradeTime);
+                    total += item.quanitity;
+                }
             }
-            tbBordid.Text = bordid;
-            //tbQuanitity.Text = string.Format("{0}", item.quanitity);
-            //tbPrice.Text = string.Format("{0}", item.price);
-            //tbTradeTime.Text = string.Format("{0}", item.tradeTime);
-            
-           
+            tbTotal.Text = string.Format("{0}",total);
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JSON
 {
-    public class Rootobject
+    public class RootObject
     {
         public Securities securities { get; set; }
     }

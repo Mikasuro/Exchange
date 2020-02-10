@@ -12,7 +12,7 @@ namespace Exchange.Model
         public string tradeName { get; set; }
         public string boardid { get; set; }
         public double price { get; set; }
-        public double quanitity { get; set; }
+        public int quanitity { get; set; }
         public DateTime tradeTime { get; set; }
     }
 }

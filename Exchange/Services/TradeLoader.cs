@@ -27,7 +27,7 @@ namespace Exchange.Services
                     boardid = d[2] as string,
                     tradeTime = Convert.ToDateTime(d[3]),
                     price = Convert.ToDouble(d[4]),
-                    quanitity = Convert.ToDouble(d[5]),
+                    quanitity = Convert.ToInt32(d[5]),
                     tradeName = d[6] as string,
                 }
                 ).ToArray();
