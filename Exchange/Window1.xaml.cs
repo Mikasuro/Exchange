@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Exchange
 {
@@ -21,7 +23,9 @@ namespace Exchange
     /// </summary>
     public partial class Window1 : Window
     {
-       
+        private readonly Security security;
+        int counter = 0;
+
         public Window1()
         {
             InitializeComponent();
@@ -29,10 +33,16 @@ namespace Exchange
         public Window1(Security security)
         {
             InitializeComponent();
+            /*DispatcherTimer dispatcherTimer = new DispatcherTimer();
+            dispatcherTimer.Interval = TimeSpan.FromSeconds(5);
+            dispatcherTimer.Tick += DispatcherTimer_Tick;
+            dispatcherTimer.Start();*/
+            Task.Run(() => LoadData());
+/*
+            Task.Run(() => LoadData());
             TradeLoader tradeLoader = new TradeLoader();
-            var trade = tradeLoader.LoadTradesFrom(security.secid);
-            tbName.Text = security.name;
-            tbSecId.Text = security.secid;
+            var trade = tradeLoader.LoadTradesFrom(security.SECID);
+            tbSecId.Text = security.SECID;
             var total = 0;
             if (trade != null)
             {
@@ -44,7 +54,32 @@ namespace Exchange
                     total += item.quanitity;
                 }
             }
-            tbTotal.Text = string.Format("{0}",total);
+            tbTotal.Text = string.Format("{0}",total);*/
+
+            this.security = security;
+        }
+
+        private void DispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            Thread.Sleep(4);
+            tbTotal.Text = (counter++).ToString();
+            //throw new NotImplementedException();
+        }
+
+        void LoadData()
+        {
+            //разобраться как использовать try catch,в блоке finally вставить Task.Run(() => LoadData());
+
+            //вызвать Loader
+            SecutirysLoad secutirysLoad = new SecutirysLoad();
+            var trade = secutirysLoad.LoadSecuritiesFrom(security.SECID);
+            Dispatcher.Invoke(() => {
+                //обновлять форму здесь
+                tbTotal.Text = (counter++).ToString();
+            });
+            //задержка обновления данных:
+            Thread.Sleep(5000);
+            Task.Run(() => LoadData());
         }
     }
 }

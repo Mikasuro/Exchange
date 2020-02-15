@@ -3,26 +3,24 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace Exchange.Services
 {
-    class SecutirysLoader
+    class SecutirysLoad
     {
         public string LoadSecutiryFrom(int start)
         {
-            var url = "iss/engines/stock/markets/shares/boards/TQBR/securities.json";
+            var url = "iss.moex.com/iss/engines/stock/markets/shares/boards/TQBR/securities/{0}.json";
             return MoexDownloader.Load(url);
         }
 
         public Security[] LoadSecuritiesFrom(int start)
         {
             var result = LoadSecutiryFrom(start);
-            var root = JsonConvert.DeserializeAnonymousType(result, new { Securities =  new RootObject() });
+            var root = JsonConvert.DeserializeAnonymousType(result, new { Securities = new RootObject() });
             var securities = root.Securities.data.Select(
                 d => new Security
                 {
@@ -59,45 +57,5 @@ namespace Exchange.Services
             return securities;
         }
         static HttpDownloader MoexDownloader = new HttpDownloader("https://iss.moex.com/");
-        
-
-        public List<Security> LoadSecutiry()
-        {
-            string securityFile = Environment.CurrentDirectory + @"\sec.txt";
-            List<Security> securities = new List<Security>();
-            if (File.Exists(securityFile))
-            {
-                var path = JsonConvert.DeserializeObject<Security[]>(File.ReadAllText(securityFile));
-                securities.AddRange(path);
-            }
-            else
-            {
-                int threadCount = Environment.ProcessorCount * 2;
-                ThreadPool.SetMinThreads(threadCount, threadCount);
-                DateTime dt = DateTime.Now;
-                for (int i = 0;i < 1000 ; i += 100 * threadCount)
-                {
-                    bool hasEmpty = false;
-                    var allTasks = new Task<Security[]>[threadCount];
-                    Parallel.For(0, threadCount, (j) =>
-                    {
-                        allTasks[j] = Task.Run<Security[]>(() => LoadSecuritiesFrom(i + j * 100));
-                    });
-                    foreach (var item in allTasks)
-                    {
-                        if (item.Result.Length == 0)
-                        {
-                            hasEmpty = true;
-                            break;
-                        }
-                        securities.AddRange(item.Result);
-                    }
-                    if (hasEmpty) { break; }
-                }
-                string file = JsonConvert.SerializeObject(securities);
-                File.WriteAllText("sec.txt", file);
-            }
-            return securities;
-        }
     }
 }

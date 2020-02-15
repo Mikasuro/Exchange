@@ -19,8 +19,8 @@ namespace Exchange.Services
         public Trades[] LoadTradesFrom(string AFLT)
         {
             var result = LoadTradeFrom(AFLT);
-            var root = JsonConvert.DeserializeAnonymousType(result, new { CurrentPrices = new RootObject() });
-            var trades = root.CurrentPrices.data.Select(
+            var root = JsonConvert.DeserializeAnonymousType(result, new { Trades = new RootObject() });
+            var trades = root.Trades.data.Select(
                 d => new Trades
                 {
                     secid = d[1] as string,

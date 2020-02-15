@@ -49,7 +49,6 @@ namespace Exchange
         {
             SecutirysLoader secutirysLoader = new SecutirysLoader();
             Securities = secutirysLoader.LoadSecutiry()
-                .Where(sec => sec.group == "stock_shares" && sec.is_traded == 1 )
                 .ToList();
 
             
@@ -59,7 +58,6 @@ namespace Exchange
         {
             PriceLoader priceloader = new PriceLoader();
             var prices = priceloader.LoadPrice()
-                .Where( price => price.boardId == "TQBR")
                 .GroupBy(cp => cp.secId, cp => cp)
                 .Select( gr => gr.OrderBy( price=> price.tradeTime).Last());
 
