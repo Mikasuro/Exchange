@@ -11,13 +11,13 @@ namespace Exchange.Services
 {
     class SecutirysLoad
     {
-        public string LoadSecutiryFrom(int start)
+        public string LoadSecutiryFrom(string start)
         {
-            var url = "iss.moex.com/iss/engines/stock/markets/shares/boards/TQBR/securities/{0}.json";
+            var url = string.Format("iss.moex.com/iss/engines/stock/markets/shares/boards/TQBR/securities/{0}.json", start);
             return MoexDownloader.Load(url);
         }
 
-        public Security[] LoadSecuritiesFrom(int start)
+        public Security[] LoadSecuritiesFrom(string start)
         {
             var result = LoadSecutiryFrom(start);
             var root = JsonConvert.DeserializeAnonymousType(result, new { Securities = new RootObject() });

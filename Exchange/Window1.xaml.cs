@@ -38,24 +38,23 @@ namespace Exchange
             dispatcherTimer.Tick += DispatcherTimer_Tick;
             dispatcherTimer.Start();*/
             Task.Run(() => LoadData());
-/*
-            Task.Run(() => LoadData());
-            TradeLoader tradeLoader = new TradeLoader();
-            var trade = tradeLoader.LoadTradesFrom(security.SECID);
-            tbSecId.Text = security.SECID;
-            var total = 0;
-            if (trade != null)
-            {
-                foreach (var item in trade)
-                {
-                    item.price = Convert.ToDouble(item.price);
-                    item.quanitity = Convert.ToInt32(item.quanitity);
-                    item.tradeTime = Convert.ToDateTime(item.tradeTime);
-                    total += item.quanitity;
-                }
-            }
-            tbTotal.Text = string.Format("{0}",total);*/
-
+            /*
+                        Task.Run(() => LoadData());
+                        TradeLoader tradeLoader = new TradeLoader();
+                        var trade = tradeLoader.LoadTradesFrom(security.SECID);
+                        tbSecId.Text = security.SECID;
+                        var total = 0;
+                        if (trade != null)
+                        {
+                            foreach (var item in trade)
+                            {
+                                item.price = Convert.ToDouble(item.price);
+                                item.quanitity = Convert.ToInt32(item.quanitity);
+                                item.tradeTime = Convert.ToDateTime(item.tradeTime);
+                                total += item.quanitity;
+                            }
+                        }
+                        tbTotal.Text = string.Format("{0}",total);*/
             this.security = security;
         }
 
@@ -72,10 +71,11 @@ namespace Exchange
 
             //вызвать Loader
             SecutirysLoad secutirysLoad = new SecutirysLoad();
-            var trade = secutirysLoad.LoadSecuritiesFrom(security.SECID);
+            var sec = secutirysLoad.LoadSecuritiesFrom(security.SECID);
             Dispatcher.Invoke(() => {
                 //обновлять форму здесь
                 tbTotal.Text = (counter++).ToString();
+                
             });
             //задержка обновления данных:
             Thread.Sleep(5000);
