@@ -71,11 +71,15 @@ namespace Exchange
 
             //вызвать Loader
             SecutirysLoad secutirysLoad = new SecutirysLoad();
-            var sec = secutirysLoad.LoadSecuritiesFrom(security.SECID);
+            var sec = secutirysLoad.LoadSecuritiesFrom(security.secId);
+            MarketLoader marketData = new MarketLoader();
+            var mk = marketData.LoadSecuritiesFrom(security.secId);
             Dispatcher.Invoke(() => {
                 //обновлять форму здесь
                 tbTotal.Text = (counter++).ToString();
-                
+                tbName.Text = security.secName;
+                tbSecId.Text = security.secId;
+                //tbLast.Text = string.Format("0", mk.Last);
             });
             //задержка обновления данных:
             Thread.Sleep(5000);

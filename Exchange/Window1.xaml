@@ -9,7 +9,7 @@
     <DockPanel>
         <Grid >
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="110"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -26,16 +26,16 @@
             <TextBox x:Name="tbName" Grid.Column="1" Grid.Row="0" FontSize="20" Margin="2" BorderBrush="Black"/>
             <TextBlock Grid.Column="0" Grid.Row="1" Text="SecId" FontSize="20"/>
             <TextBox x:Name ="tbSecId" Grid.Column="1" Grid.Row="1" FontSize="20" Margin="2" BorderBrush="Black"/>
-            <TextBlock Grid.Column="0" Grid.Row="2" Text="BordId" FontSize="20"/>
-            <TextBox x:Name ="tbBordid" Grid.Column="1" Grid.Row="2" FontSize="20" Margin="2" BorderBrush="Black"/>
-            <TextBlock Grid.Column="0" Grid.Row="3" Text="Price" FontSize="20"/>
-            <TextBox x:Name ="tbPrice" Grid.Column="1" Grid.Row="3" FontSize="20" Margin="2" BorderBrush="Black"/>
-            <TextBlock Grid.Column="0" Grid.Row="4" Text="TradeTime" FontSize="20"/>
-            <TextBox x:Name ="tbTradeTime" Grid.Column="1" Grid.Row="4" FontSize="20" Margin="2" BorderBrush="Black"/>
-            <TextBlock Grid.Column="0" Grid.Row="5" Text="DateTime" FontSize="20"/>
-            <TextBox x:Name ="tbDateTime" Grid.Column="1" Grid.Row="5" FontSize="20" Margin="2" BorderBrush="Black"/>
-            <TextBlock Grid.Column="0" Grid.Row="6" Text="Quanitity" FontSize="20"/>
-            <TextBox x:Name="tbQuanitity" Grid.Column="1" Grid.Row="6" FontSize="20" Margin="2" BorderBrush="Black"/>
+            <TextBlock Grid.Column="0" Grid.Row="2" Text="Last" FontSize="20"/>
+            <TextBox x:Name ="tbLast" Grid.Column="1" Grid.Row="2" FontSize="20" Margin="2" BorderBrush="Black"/>
+            <TextBlock Grid.Column="0" Grid.Row="3" Text="VolToday" FontSize="20"/>
+            <TextBox x:Name ="tbVolToday" Grid.Column="1" Grid.Row="3" FontSize="20" Margin="2" BorderBrush="Black"/>
+            <TextBlock Grid.Column="0" Grid.Row="4" Text="ValToday" FontSize="20"/>
+            <TextBox x:Name ="tbValToday" Grid.Column="1" Grid.Row="4" FontSize="20" Margin="2" BorderBrush="Black"/>
+            <TextBlock Grid.Column="0" Grid.Row="5" Text="Value" FontSize="20"/>
+            <TextBox x:Name ="tbValue" Grid.Column="1" Grid.Row="5" FontSize="20" Margin="2" BorderBrush="Black"/>
+            <TextBlock Grid.Column="0" Grid.Row="6" Text="LastChange" FontSize="20"/>
+            <TextBox x:Name="tbLastChange" Grid.Column="1" Grid.Row="6" FontSize="20" Margin="2" BorderBrush="Black"/>
             <TextBlock Grid.Column="0" Grid.Row="7" Text="Total" FontSize="20"/>
             <TextBox x:Name="tbTotal" Grid.Column="1" Grid.Row="7" FontSize="20" Margin="2" BorderBrush="Black"/>
         </Grid>

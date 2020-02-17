@@ -66,6 +66,7 @@
     <Compile Include="Model\RootObject.cs" />
     <Compile Include="Model\Trades.cs" />
     <Compile Include="Services\HttpDownloader.cs" />
+    <Compile Include="Services\MarketLoader.cs" />
     <Compile Include="Services\PriceLoader.cs" />
     <Compile Include="Services\SecutirysLoad.cs" />
     <Compile Include="Services\SecutirysLoader.cs" />

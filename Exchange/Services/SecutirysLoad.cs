@@ -13,7 +13,7 @@ namespace Exchange.Services
     {
         public string LoadSecutiryFrom(string start)
         {
-            var url = string.Format("iss.moex.com/iss/engines/stock/markets/shares/boards/TQBR/securities/{0}.json", start);
+            var url = string.Format("iss/engines/stock/markets/shares/boards/TQBR/securities/{0}.json", start);
             return MoexDownloader.Load(url);
         }
 
@@ -24,34 +24,34 @@ namespace Exchange.Services
             var securities = root.Securities.data.Select(
                 d => new Security
                 {
-                    SECID = d[0] as string,
-                    BOARDID = d[1] as string,
-                    SHORTNAME = d[2] as string,
-                    PREVPRICE = Convert.ToDouble(d[3], CultureInfo.InvariantCulture),
-                    LOTSIZE = Convert.ToDouble(d[4], CultureInfo.InvariantCulture),
-                    FACEVALUE = Convert.ToDouble(d[5], CultureInfo.InvariantCulture),
-                    STATUS = d[6] as string,
-                    BOARDNAME = d[7] as string,
-                    DECIMALS = Convert.ToDouble(d[8], CultureInfo.InvariantCulture),
-                    SECNAME = d[9] as string,
-                    REMARKS = d[10] as string,
-                    MARKETCODE = d[11] as string,
-                    INSTRID = d[12] as string,
-                    SECTORID = d[13] as string,
-                    MINSTEP = Convert.ToDouble(d[14], CultureInfo.InvariantCulture),
-                    PREVWAPRICE = Convert.ToDouble(d[15], CultureInfo.InvariantCulture),
-                    FACEUNIT = d[16] as string,
-                    PREVDATE = d[17] as string,
-                    ISSUESIZE = Convert.ToDouble(d[18], CultureInfo.InvariantCulture),
-                    ISIN = d[19] as string,
-                    LATNAME = d[20] as string,
-                    REGNUMBER = d[21] as string,
-                    PREVLEGALCLOSEPRICE = Convert.ToDouble(d[22], CultureInfo.InvariantCulture),
-                    PREVADMITTEDQUOTE = Convert.ToDouble(d[23], CultureInfo.InvariantCulture),
-                    CURRENCYID = d[24] as string,
-                    SECTYPE = d[25] as string,
-                    LISTLEVEL = Convert.ToDouble(d[26], CultureInfo.InvariantCulture),
-                    SETTLEDATE = d[27] as string,
+                    secId = d[0] as string,
+                    boardId = d[1] as string,
+                    shortName = d[2] as string,
+                    prevPrice = Convert.ToDouble(d[3], CultureInfo.InvariantCulture),
+                    lotSize = Convert.ToDouble(d[4], CultureInfo.InvariantCulture),
+                    faceValue = Convert.ToDouble(d[5], CultureInfo.InvariantCulture),
+                    status = d[6] as string,
+                    boardName = d[7] as string,
+                    drcimals = Convert.ToDouble(d[8], CultureInfo.InvariantCulture),
+                    secName = d[9] as string,
+                    remarks = d[10] as string,
+                    marketCod = d[11] as string,
+                    instrId = d[12] as string,
+                    sectorId = d[13] as string,
+                    minStep = Convert.ToDouble(d[14], CultureInfo.InvariantCulture),
+                    prevWarprice = Convert.ToDouble(d[15], CultureInfo.InvariantCulture),
+                    faceUnit = d[16] as string,
+                    prevDate = d[17] as string,
+                    issueSize = Convert.ToDouble(d[18], CultureInfo.InvariantCulture),
+                    isin = d[19] as string,
+                    latName = d[20] as string,
+                    regNumber = d[21] as string,
+                    prevLegalClosePrice = Convert.ToDouble(d[22], CultureInfo.InvariantCulture),
+                    prevadmittedquote = Convert.ToDouble(d[23], CultureInfo.InvariantCulture),
+                    cerrencyId = d[24] as string,
+                    secType = d[25] as string,
+                    listLevel = Convert.ToDouble(d[26], CultureInfo.InvariantCulture),
+                    settleDate = d[27] as string,
                 }
                 ).ToArray();
             return securities;

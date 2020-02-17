@@ -8,6 +8,12 @@ namespace Exchange.Model
 {
     class Marketdata
     {
-
+        public string SecId { get; set; }
+        public double Last { get; set; }
+        public int VolToday { get; set; }
+        public int ValToday { get; set; }
+        public double Value { get; set; }
+        public double LastChange { get; set; }
+        public DateTime Time { get; set; }
     }
 }

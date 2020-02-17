@@ -8,34 +8,34 @@ namespace Exchange.Model
 {
     public class Security
     {
-        public string SECID { get; set; }
-        public string BOARDID { get; set; }
-        public string SHORTNAME { get; set; }
-        public double PREVPRICE { get; set; }
-        public double LOTSIZE { get; set; }
-        public double FACEVALUE { get; set; }
-        public string STATUS { get; set; }
-        public string BOARDNAME { get; set; }
-        public double DECIMALS { get; set; }
-        public string SECNAME { get; set; }
-        public string REMARKS { get; set; }
-        public string MARKETCODE { get; set; }
-        public string INSTRID { get; set; }
-        public string SECTORID { get; set; }
-        public double MINSTEP { get; set; }
-        public double PREVWAPRICE { get; set; }
-        public string FACEUNIT { get; set; }
-        public string PREVDATE { get; set; }
-        public double ISSUESIZE { get; set; }
-        public string ISIN { get; set; }
-        public string LATNAME { get; set; }
-        public string REGNUMBER { get; set; }
-        public double PREVLEGALCLOSEPRICE { get; set; }
-        public double PREVADMITTEDQUOTE { get; set; }
-        public string CURRENCYID { get; set; }
-        public string SECTYPE { get; set; }
-        public double LISTLEVEL { get; set; }
-        public string SETTLEDATE { get; set; }
+        public string secId { get; set; }
+        public string boardId { get; set; }
+        public string shortName { get; set; }
+        public double prevPrice { get; set; }
+        public double lotSize { get; set; }
+        public double faceValue { get; set; }
+        public string status { get; set; }
+        public string boardName { get; set; }
+        public double drcimals { get; set; }
+        public string secName { get; set; }
+        public string remarks { get; set; }
+        public string marketCod { get; set; }
+        public string instrId { get; set; }
+        public string sectorId { get; set; }
+        public double minStep { get; set; }
+        public double prevWarprice { get; set; }
+        public string faceUnit { get; set; }
+        public string prevDate { get; set; }
+        public double issueSize { get; set; }
+        public string isin { get; set; }
+        public string latName { get; set; }
+        public string regNumber { get; set; }
+        public double prevLegalClosePrice { get; set; }
+        public double prevadmittedquote { get; set; }
+        public string cerrencyId { get; set; }
+        public string secType { get; set; }
+        public double listLevel { get; set; }
+        public string settleDate { get; set; }
 
     }
 
