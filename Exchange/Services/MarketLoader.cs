@@ -19,17 +19,17 @@ namespace Exchange.Services
         public Marketdata[] LoadSecuritiesFrom(string start)
         {
             var result = LoadSecutiryFrom(start);
-            var root = JsonConvert.DeserializeAnonymousType(result, new { Securities = new RootObject() });
-            var market = root.Securities.data.Select(
+            var root = JsonConvert.DeserializeAnonymousType(result, new { Marketdata = new RootObject() });
+            var market = root.Marketdata.data.Select(
                 d => new Marketdata
                 {
-                    Last = Convert.ToDouble(d[0]),
-                    VolToday = Convert.ToInt32(d[1]),
-                    ValToday = Convert.ToInt32(d[2]),
-                    Value = Convert.ToDouble(d[3]),
-                    LastChange = Convert.ToDouble(d[4]),
-                    Time = Convert.ToDateTime(d[5]),
-                    SecId = d[6] as string,
+                    secId = d[0] as string,
+                    time = d[1] as string,
+                    last = Convert.ToDouble(d[2]),
+                    lastChange = Convert.ToDouble(d[3]),
+                    valToday = Convert.ToInt32(d[4]),
+                    volToday = Convert.ToInt32(d[5]),
+                    value = Convert.ToDouble(d[6]),
                 }
                 ).ToArray();
             return market;

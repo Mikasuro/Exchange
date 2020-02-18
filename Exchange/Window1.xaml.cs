@@ -70,8 +70,6 @@ namespace Exchange
             //разобраться как использовать try catch,в блоке finally вставить Task.Run(() => LoadData());
 
             //вызвать Loader
-            SecutirysLoad secutirysLoad = new SecutirysLoad();
-            var sec = secutirysLoad.LoadSecuritiesFrom(security.secId);
             MarketLoader marketData = new MarketLoader();
             var mk = marketData.LoadSecuritiesFrom(security.secId);
             Dispatcher.Invoke(() => {
@@ -79,7 +77,7 @@ namespace Exchange
                 tbTotal.Text = (counter++).ToString();
                 tbName.Text = security.secName;
                 tbSecId.Text = security.secId;
-                //tbLast.Text = string.Format("0", mk.Last);
+                
             });
             //задержка обновления данных:
             Thread.Sleep(5000);
