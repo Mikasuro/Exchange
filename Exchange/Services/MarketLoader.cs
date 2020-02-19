@@ -24,12 +24,12 @@ namespace Exchange.Services
                 d => new Marketdata
                 {
                     secId = d[0] as string,
-                    time = d[1] as string,
-                    last = Convert.ToDouble(d[2]),
-                    lastChange = Convert.ToDouble(d[3]),
-                    valToday = Convert.ToInt32(d[4]),
-                    volToday = Convert.ToInt32(d[5]),
-                    value = Convert.ToDouble(d[6]),
+                    time = d[52] as string,
+                    last = Convert.ToDouble(d[12]),
+                    lastChange = Convert.ToDouble(d[13]),
+                    valToday = Convert.ToDouble(d[28]),
+                    volToday = Convert.ToDouble(d[27]),
+                    value = Convert.ToDouble(d[16]),
                 }
                 ).ToArray();
             return market;

@@ -10,8 +10,8 @@ namespace Exchange.Model
     {
         public string secId { get; set; }
         public double last { get; set; }
-        public int volToday { get; set; }
-        public int valToday { get; set; }
+        public double volToday { get; set; }
+        public double valToday { get; set; }
         public double value { get; set; }
         public double lastChange { get; set; }
         public string time { get; set; }

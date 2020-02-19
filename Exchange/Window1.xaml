@@ -21,6 +21,7 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <TextBlock Grid.Column="0" Grid.Row="0" Text="Name" FontSize="20"/>
             <TextBox x:Name="tbName" Grid.Column="1" Grid.Row="0" FontSize="20" Margin="2" BorderBrush="Black"/>
@@ -36,8 +37,10 @@
             <TextBox x:Name ="tbValue" Grid.Column="1" Grid.Row="5" FontSize="20" Margin="2" BorderBrush="Black"/>
             <TextBlock Grid.Column="0" Grid.Row="6" Text="LastChange" FontSize="20"/>
             <TextBox x:Name="tbLastChange" Grid.Column="1" Grid.Row="6" FontSize="20" Margin="2" BorderBrush="Black"/>
-            <TextBlock Grid.Column="0" Grid.Row="7" Text="Total" FontSize="20"/>
-            <TextBox x:Name="tbTotal" Grid.Column="1" Grid.Row="7" FontSize="20" Margin="2" BorderBrush="Black"/>
+            <TextBlock Grid.Column="0" Grid.Row="8" Text="Total" FontSize="20"/>
+            <TextBox x:Name="tbTotal" Grid.Column="1" Grid.Row="8" FontSize="20" Margin="2" BorderBrush="Black"/>
+            <TextBlock Grid.Column="0" Grid.Row="7" Text="Time" FontSize="20"/>
+            <TextBox x:Name="tbTime" Grid.Column="1" Grid.Row="7" FontSize="20" Margin="2" BorderBrush="Black"/>
         </Grid>
     </DockPanel>
     
