@@ -25,9 +25,9 @@
         <Button DockPanel.Dock="Top"  Height="30" Margin="2" Background="LightBlue" Content="Найти"/>
         <DataGrid x:Name="stocksGrid" AutoGenerateColumns="False" ItemsSource="{Binding Securities}" CanUserAddRows="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="*" Binding="{Binding SECID}"/>
-                <DataGridHyperlinkColumn Header="Название" Width="*" Binding="{Binding SECNAME}" />
-                <DataGridTextColumn Header="Цена" Width="200" Binding="{Binding Price}"/>
+                <DataGridTextColumn Header="*" Binding="{Binding secId}"/>
+                <DataGridHyperlinkColumn Header="Название" Width="*" Binding="{Binding secName}" />
+                <DataGridTextColumn Header="Цена" Width="200" Binding="{Binding price}"/>
                 <DataGridTemplateColumn Header="Перейти">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
