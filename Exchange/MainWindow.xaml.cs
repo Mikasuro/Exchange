@@ -24,6 +24,8 @@ namespace Exchange
 {
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
+        //todo: добавить коллекцию для хранения всех акций, для использования в качестве основы для запроса
+    
         private List<Security> _securities;
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -37,6 +39,7 @@ namespace Exchange
                 OnPropertyChanged();
             }
         }
+        
         void OnPropertyChanged([CallerMemberName] string propName="")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
@@ -68,6 +71,14 @@ namespace Exchange
         {
             Window1 window = new Window1((sender as Button).DataContext as Security);
             window.ShowDialog();
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            //var i = search.Text.IndexOf(search.Text);
+            var result = Securities
+                .Where(s => s.secName.Contains(search.Text))
+                .ToList();
         }
     }
 }
