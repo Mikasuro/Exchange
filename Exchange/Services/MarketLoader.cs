@@ -24,7 +24,7 @@ namespace Exchange.Services
                 d => new Marketdata
                 {
                     secId = d[0] as string,
-                    time = d[52] as string,
+                    time = d[42] as string,
                     last = Convert.ToDouble(d[12]),
                     lastChange = Convert.ToDouble(d[13]),
                     valToday = Convert.ToDouble(d[28]),

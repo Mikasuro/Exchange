@@ -3,8 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:lvc ="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         mc:Ignorable="d"
-        Title="Window1" Height="450" Width="800">
+        Title="Window1" Height="549" Width="866">
     <DockPanel>
         <Grid >
             <Grid.ColumnDefinitions>
@@ -21,6 +22,7 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <TextBlock Grid.Column="0" Grid.Row="0" Text="Name" FontSize="20"/>
             <TextBox x:Name="tbName" Grid.Column="1" Grid.Row="0" FontSize="20" Margin="2" BorderBrush="Black" IsReadOnly="True"/>
@@ -38,9 +40,16 @@
             <TextBox x:Name="tbLastChange" Grid.Column="1" Grid.Row="6" FontSize="20" Margin="2" BorderBrush="Black" IsReadOnly="True"/>
             <TextBlock Grid.Column="0" Grid.Row="7" Text="Time" FontSize="20"/>
             <TextBox x:Name="tbTime" Grid.Column="1" Grid.Row="7" FontSize="20" Margin="2" BorderBrush="Black" IsReadOnly="True"/>
-            <TextBlock Grid.Column="0" Grid.Row="8" Text="Close" FontSize="20"/>
-            <TextBox x:Name="tbClose" Grid.Column="1" Grid.Row="8" FontSize="20" Margin="2" BorderBrush="Black" IsReadOnly="True"/>
+            <lvc:CartesianChart Series="{Binding hs}" Grid.Row="9" Height="206" VerticalAlignment="Top" Margin="42,10,10,0" Grid.ColumnSpan="2">
+                <lvc:CartesianChart.AxisY>
+                    <lvc:Axis Title="Sales" FontSize="23" LabelFormatter="{Binding close}"></lvc:Axis>
+                </lvc:CartesianChart.AxisY>
+                <lvc:CartesianChart.AxisX>
+                    <lvc:Axis Title="Month" FontSize="23" Labels="{Binding Labels}"></lvc:Axis>
+                </lvc:CartesianChart.AxisX>
+
+            </lvc:CartesianChart >
         </Grid>
     </DockPanel>
-    
+
 </Window>

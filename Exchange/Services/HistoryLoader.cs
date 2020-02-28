@@ -13,7 +13,7 @@ namespace Exchange.Services
     {
         public string LoadHistoriesFrom(string secId, string from, string till)
         {
-            var url = string.Format("iss/engines/stock/markets/shares/boards/TQBR/securities/{0}.json?from={1}&till={2}", secId, from, till );
+            var url = string.Format("iss/history/engines/stock/markets/shares/boards/TQBR/securities/{0}.json?from={1}&till={2}", secId, from, till );
             return MoexDownloader.Load(url);
         }
         public History[] LoadHistory(string secId, string from, string till)
