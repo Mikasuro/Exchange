@@ -14,7 +14,7 @@
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="Название" FontSize="20"/>
-            <TextBox Grid.Column="1" FontSize="20" Margin="2" BorderBrush="Black"/>
+            <TextBox Grid.Column="1" FontSize="20" Margin="2" BorderBrush="Black" TextChanged="TextBox_TextChanged" x:Name="search"/>
         </Grid>
         <UniformGrid Columns="4" DockPanel.Dock="Top">
             <TextBlock Text="Мин цена" FontSize="20"/>
@@ -26,7 +26,7 @@
         <DataGrid x:Name="stocksGrid" AutoGenerateColumns="False" ItemsSource="{Binding Securities}" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="*" Binding="{Binding secId}"/>
-                <DataGridHyperlinkColumn Header="Название" Width="*" Binding="{Binding secName}" />
+                <DataGridTextColumn Header="Название" Width="*" Binding="{Binding secName}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Цена" Width="200" Binding="{Binding price}"/>
                 <DataGridTemplateColumn Header="Перейти">
                     <DataGridTemplateColumn.CellTemplate>

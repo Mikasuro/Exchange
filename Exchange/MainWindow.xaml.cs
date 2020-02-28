@@ -22,11 +22,10 @@ using System.Windows.Shapes;
 
 namespace Exchange
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
+        //todo: добавить коллекцию для хранения всех акций, для использования в качестве основы для запроса
+    
         private List<Security> _securities;
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -40,6 +39,7 @@ namespace Exchange
                 OnPropertyChanged();
             }
         }
+        
         void OnPropertyChanged([CallerMemberName] string propName="")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
@@ -50,9 +50,6 @@ namespace Exchange
             SecutirysLoader secutirysLoader = new SecutirysLoader();
             Securities = secutirysLoader.LoadSecutiry()
                 .ToList();
-
-            
-
         }
         public void LoadPrices()
         {
@@ -60,9 +57,6 @@ namespace Exchange
             var prices = priceloader.LoadPrice()
                 .GroupBy(cp => cp.secId, cp => cp)
                 .Select( gr => gr.OrderBy( price=> price.tradeTime).Last());
-
-            //    .Where(sec => sec.group == "stock_shares" && sec.is_traded == 1)
-             //   .ToList();
         }
 
             public MainWindow()
@@ -70,16 +64,21 @@ namespace Exchange
             InitializeComponent();
             DataContext = this;
             Thread threadSecuritys = new Thread(new ThreadStart(LoadSecuritys));
-            //Thread threadPrices = new Thread(new ThreadStart(LoadPrices));
             threadSecuritys.Start();
-           // threadPrices.Start();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Window1 window = new Window1((sender as Button).DataContext as Security);
             window.ShowDialog();
+        }
 
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            //var i = search.Text.IndexOf(search.Text);
+            var result = Securities
+                .Where(s => s.secName.Contains(search.Text))
+                .ToList();
         }
     }
 }

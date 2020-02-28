@@ -18,9 +18,6 @@ using System.Windows.Threading;
 
 namespace Exchange
 {
-    /// <summary>
-    /// Логика взаимодействия для Window1.xaml
-    /// </summary>
     public partial class Window1 : Window
     {
         private readonly Security security;
@@ -33,28 +30,7 @@ namespace Exchange
         public Window1(Security security)
         {
             InitializeComponent();
-            /*DispatcherTimer dispatcherTimer = new DispatcherTimer();
-            dispatcherTimer.Interval = TimeSpan.FromSeconds(5);
-            dispatcherTimer.Tick += DispatcherTimer_Tick;
-            dispatcherTimer.Start();*/
             Task.Run(() => LoadData());
-            /*
-                        Task.Run(() => LoadData());
-                        TradeLoader tradeLoader = new TradeLoader();
-                        var trade = tradeLoader.LoadTradesFrom(security.SECID);
-                        tbSecId.Text = security.SECID;
-                        var total = 0;
-                        if (trade != null)
-                        {
-                            foreach (var item in trade)
-                            {
-                                item.price = Convert.ToDouble(item.price);
-                                item.quanitity = Convert.ToInt32(item.quanitity);
-                                item.tradeTime = Convert.ToDateTime(item.tradeTime);
-                                total += item.quanitity;
-                            }
-                        }
-                        tbTotal.Text = string.Format("{0}",total);*/
             this.security = security;
         }
 
@@ -62,26 +38,23 @@ namespace Exchange
         {
             Thread.Sleep(4);
             tbTotal.Text = (counter++).ToString();
-            //throw new NotImplementedException();
         }
 
         void LoadData()
         {
-            //разобраться как использовать try catch,в блоке finally вставить Task.Run(() => LoadData());
-
-            //вызвать Loader
-            SecutirysLoad secutirysLoad = new SecutirysLoad();
-            var sec = secutirysLoad.LoadSecuritiesFrom(security.secId);
             MarketLoader marketData = new MarketLoader();
             var mk = marketData.LoadSecuritiesFrom(security.secId);
             Dispatcher.Invoke(() => {
-                //обновлять форму здесь
                 tbTotal.Text = (counter++).ToString();
                 tbName.Text = security.secName;
                 tbSecId.Text = security.secId;
-                //tbLast.Text = string.Format("0", mk.Last);
+                tbValToday.Text = mk[0].valToday.ToString();
+                tbLast.Text = mk[0].last.ToString();
+                tbValue.Text = mk[0].value.ToString();
+                tbVolToday.Text = mk[0].volToday.ToString();
+                tbLastChange.Text = mk[0].lastChange.ToString();
+                tbTime.Text = mk[0].time.ToString();
             });
-            //задержка обновления данных:
             Thread.Sleep(5000);
             Task.Run(() => LoadData());
         }
