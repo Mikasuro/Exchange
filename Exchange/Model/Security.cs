@@ -36,8 +36,5 @@ namespace Exchange.Model
         public string secType { get; set; }
         public double listLevel { get; set; }
         public string settleDate { get; set; }
-
     }
-
-       
 }

@@ -62,9 +62,11 @@
     </ApplicationDefinition>
     <Compile Include="Model\CurrentPrice.cs" />
     <Compile Include="Model\CurrentPrices.cs" />
+    <Compile Include="Model\History.cs" />
     <Compile Include="Model\Marketdata.cs" />
     <Compile Include="Model\RootObject.cs" />
     <Compile Include="Model\Trades.cs" />
+    <Compile Include="Services\HistoryLoader.cs" />
     <Compile Include="Services\HttpDownloader.cs" />
     <Compile Include="Services\MarketLoader.cs" />
     <Compile Include="Services\PriceLoader.cs" />

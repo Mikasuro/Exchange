@@ -10,15 +10,15 @@ namespace Exchange.Services
 {
     class MarketLoader
     {
-        public string LoadSecutiryFrom(string start)
+        public string LoadMarketFrom(string secId)
         {
-            var url = string.Format("iss/engines/stock/markets/shares/boards/TQBR/securities/{0}.json", start);
+            var url = string.Format("iss/engines/stock/markets/shares/boards/TQBR/securities/{0}.json", secId);
             return MoexDownloader.Load(url);
         }
 
-        public Marketdata[] LoadSecuritiesFrom(string start)
+        public Marketdata[] LoadMarket(string secId)
         {
-            var result = LoadSecutiryFrom(start);
+            var result = LoadMarketFrom(secId);
             var root = JsonConvert.DeserializeAnonymousType(result, new { Marketdata = new RootObject() });
             var market = root.Marketdata.data.Select(
                 d => new Marketdata

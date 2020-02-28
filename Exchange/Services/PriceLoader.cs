@@ -18,7 +18,7 @@ namespace Exchange.Services
             return MoexDownloader.Load(url);
         }
 
-        public CurrentPrice[] LoadPricesFrom(int start)
+        public CurrentPrice[] LoadPrices(int start)
         {
             var result = LoadPriceFrom(start);
             var root = JsonConvert.DeserializeAnonymousType(result, new { CurrentPrices = new RootObject() });
@@ -59,7 +59,7 @@ namespace Exchange.Services
                     var allTasks = new Task<CurrentPrice[]>[threadCount];
                     Parallel.For(0, threadCount, (j) =>
                     {
-                        allTasks[j] = Task.Run<CurrentPrice[]>(() => LoadPricesFrom(i + j * 100));
+                        allTasks[j] = Task.Run<CurrentPrice[]>(() => LoadPrices(i + j * 100));
                     });
                     foreach (var item in allTasks)
                     {
