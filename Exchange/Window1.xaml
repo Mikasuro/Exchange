@@ -40,12 +40,12 @@
             <TextBox x:Name="tbLastChange" Grid.Column="1" Grid.Row="6" FontSize="20" Margin="2" BorderBrush="Black" IsReadOnly="True"/>
             <TextBlock Grid.Column="0" Grid.Row="7" Text="Time" FontSize="20"/>
             <TextBox x:Name="tbTime" Grid.Column="1" Grid.Row="7" FontSize="20" Margin="2" BorderBrush="Black" IsReadOnly="True"/>
-            <lvc:CartesianChart Series="{Binding hs}" Grid.Row="9" Height="206" VerticalAlignment="Top" Margin="42,10,10,0" Grid.ColumnSpan="2">
+            <lvc:CartesianChart Series="{Binding SeriesCollection}" Grid.Row="9" Margin="8" Grid.ColumnSpan="2">
                 <lvc:CartesianChart.AxisY>
-                    <lvc:Axis Title="Sales" FontSize="23" LabelFormatter="{Binding close}"></lvc:Axis>
+                    <lvc:Axis Title="Prices" FontSize="15"></lvc:Axis>
                 </lvc:CartesianChart.AxisY>
                 <lvc:CartesianChart.AxisX>
-                    <lvc:Axis Title="Month" FontSize="23" Labels="{Binding Labels}"></lvc:Axis>
+                    <lvc:Axis Title="Days" FontSize="15" Labels="{Binding Labels}"></lvc:Axis>
                 </lvc:CartesianChart.AxisX>
 
             </lvc:CartesianChart >

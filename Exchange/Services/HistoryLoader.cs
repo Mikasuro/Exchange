@@ -24,7 +24,8 @@ namespace Exchange.Services
                 d => new History
                 {
                     secId = d[3] as string,
-                    close = Convert.ToDouble(d[11], CultureInfo.InvariantCulture),
+                    close = Convert.ToDouble(d[14], CultureInfo.InvariantCulture),
+                    tradeDate = d[1] as string,
                 }
                 ).ToArray();
             return history;
