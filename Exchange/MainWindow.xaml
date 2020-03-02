@@ -23,7 +23,7 @@
             <TextBox FontSize="20" Margin="2" BorderBrush="Black"/>
         </UniformGrid>
         <Button DockPanel.Dock="Top"  Height="30" Margin="2" Background="LightBlue" Content="Найти"/>
-        <DataGrid x:Name="stocksGrid" AutoGenerateColumns="False" ItemsSource="{Binding Securities}" CanUserAddRows="False">
+        <DataGrid x:Name="stocksGrid" AutoGenerateColumns="False" ItemsSource="{Binding Securities2}" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="*" Binding="{Binding secId}"/>
                 <DataGridTextColumn Header="Название" Width="*" Binding="{Binding secName}" IsReadOnly="True"/>

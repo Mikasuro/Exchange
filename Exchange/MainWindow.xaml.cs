@@ -25,10 +25,17 @@ namespace Exchange
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
         //todo: добавить коллекцию для хранения всех акций, для использования в качестве основы для запроса
-    
-        private List<Security> _securities;
 
+        private List<Security> _securities;
+        private List<Security> _securitiesFiltr;
+
+        #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
+        void OnPropertyChanged([CallerMemberName] string propName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
+        }
+        #endregion
 
         public List<Security> Securities
         {
@@ -39,10 +46,15 @@ namespace Exchange
                 OnPropertyChanged();
             }
         }
-        
-        void OnPropertyChanged([CallerMemberName] string propName="")
+
+        public List<Security> Securities2
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
+            get => _securitiesFiltr;
+            set
+            {
+                _securitiesFiltr = value;
+                OnPropertyChanged();
+            }
         }
 
         public void LoadSecuritys()
@@ -50,16 +62,17 @@ namespace Exchange
             SecutirysLoader secutirysLoader = new SecutirysLoader();
             Securities = secutirysLoader.LoadSecutiry()
                 .ToList();
+            Securities2 = Securities;
         }
         public void LoadPrices()
         {
             PriceLoader priceloader = new PriceLoader();
             var prices = priceloader.LoadPrice()
                 .GroupBy(cp => cp.secId, cp => cp)
-                .Select( gr => gr.OrderBy( price=> price.tradeTime).Last());
+                .Select(gr => gr.OrderBy(price => price.tradeTime).Last());
         }
 
-            public MainWindow()
+        public MainWindow()
         {
             InitializeComponent();
             DataContext = this;
@@ -76,9 +89,10 @@ namespace Exchange
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             //var i = search.Text.IndexOf(search.Text);
-            var result = Securities
+            Securities2 = Securities
                 .Where(s => s.secName.Contains(search.Text))
                 .ToList();
+            
         }
     }
 }
