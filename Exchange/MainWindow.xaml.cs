@@ -24,8 +24,6 @@ namespace Exchange
 {
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        //todo: добавить коллекцию для хранения всех акций, для использования в качестве основы для запроса
-
         private List<Security> _securities;
         private List<Security> _securitiesFiltr;
 
@@ -88,11 +86,9 @@ namespace Exchange
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //var i = search.Text.IndexOf(search.Text);
             Securities2 = Securities
                 .Where(s => s.secName.Contains(search.Text))
                 .ToList();
-            
         }
     }
 }
