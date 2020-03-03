@@ -125,7 +125,6 @@
     <Compile Include="Services\HistoryLoader.cs" />
     <Compile Include="Services\HttpDownloader.cs" />
     <Compile Include="Services\MarketLoader.cs" />
-    <Compile Include="Services\ML.NET.cs" />
     <Compile Include="Services\PriceLoader.cs" />
     <Compile Include="Services\SecutirysLoad.cs" />
     <Compile Include="Services\SecutirysLoader.cs" />

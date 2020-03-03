@@ -9,7 +9,7 @@
     <DockPanel>
         <Grid >
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="110"/>
+                <ColumnDefinition Width="220"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -24,22 +24,27 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Column="0" Grid.Row="0" Text="Name" FontSize="20"/>
+            <TextBlock Grid.Column="0" Grid.Row="0" Text="Наименование
+                       " FontSize="20"/>
             <TextBox x:Name="tbName" Grid.Column="1" Grid.Row="0" FontSize="20" Margin="2" BorderBrush="Black" IsReadOnly="True"/>
-            <TextBlock Grid.Column="0" Grid.Row="1" Text="SecId" FontSize="20"/>
+            <TextBlock Grid.Column="0" Grid.Row="1" Text="Идентификатор" FontSize="20"/>
             <TextBox x:Name ="tbSecId" Grid.Column="1" Grid.Row="1" FontSize="20" Margin="2" BorderBrush="Black" IsReadOnly="True"/>
-            <TextBlock Grid.Column="0" Grid.Row="2" Text="Last" FontSize="20"/>
+            <TextBlock Grid.Column="0" Grid.Row="2" Text="Цена" FontSize="20"/>
             <TextBox x:Name ="tbLast" Grid.Column="1" Grid.Row="2" FontSize="20" Margin="2" BorderBrush="Black" IsReadOnly="True"/>
-            <TextBlock Grid.Column="0" Grid.Row="3" Text="VolToday" FontSize="20"/>
+            <TextBlock Grid.Column="0" Grid.Row="3" Text="Обьем продаж" FontSize="20"/>
             <TextBox x:Name ="tbVolToday" Grid.Column="1" Grid.Row="3" FontSize="20" Margin="2" BorderBrush="Black" IsReadOnly="True"/>
-            <TextBlock Grid.Column="0" Grid.Row="4" Text="ValToday" FontSize="20"/>
+            <TextBlock Grid.Column="0" Grid.Row="4" Text="Сумма продаж" FontSize="20"/>
             <TextBox x:Name ="tbValToday" Grid.Column="1" Grid.Row="4" FontSize="20" Margin="2" BorderBrush="Black" IsReadOnly="True"/>
-            <TextBlock Grid.Column="0" Grid.Row="5" Text="Value" FontSize="20"/>
-            <TextBox x:Name ="tbValue" Grid.Column="1" Grid.Row="5" FontSize="20" Margin="2" BorderBrush="Black" IsReadOnly="True"/>
-            <TextBlock Grid.Column="0" Grid.Row="6" Text="LastChange" FontSize="20"/>
-            <TextBox x:Name="tbLastChange" Grid.Column="1" Grid.Row="6" FontSize="20" Margin="2" BorderBrush="Black" IsReadOnly="True"/>
-            <TextBlock Grid.Column="0" Grid.Row="7" Text="Time" FontSize="20"/>
-            <TextBox x:Name="tbTime" Grid.Column="1" Grid.Row="7" FontSize="20" Margin="2" BorderBrush="Black" IsReadOnly="True"/>
+            <TextBlock Grid.Column="0" Grid.Row="5" Text="Последние изменение" FontSize="20"/>
+            <TextBox x:Name="tbLastChange" Grid.Column="1" Grid.Row="5" FontSize="20" Margin="2" BorderBrush="Black" IsReadOnly="True"/>
+            <TextBlock Grid.Column="0" Grid.Row="6" Text="Время" FontSize="20"/>
+            <TextBox x:Name="tbTime" Grid.Column="1" Grid.Row="6" FontSize="20" Margin="2" BorderBrush="Black" IsReadOnly="True"/>
+            <UniformGrid Grid.Column="1" Grid.Row="7" Height="30" Columns="3">
+                <Button Content="На завтра"/>
+                <Button Content="На неделю"/>
+                <Button Content="На две недели"/>
+            </UniformGrid>
+            <TextBlock Grid.Column="0" Grid.Row="7" Text="Прогноз" FontSize="20"/>
             <lvc:CartesianChart Series="{Binding SeriesCollection}" Grid.Row="9" Margin="8" Grid.ColumnSpan="2">
                 <lvc:CartesianChart.AxisY>
                     <lvc:Axis Title="Prices" FontSize="15"></lvc:Axis>
@@ -47,9 +52,10 @@
                 <lvc:CartesianChart.AxisX>
                     <lvc:Axis Title="Days" FontSize="15" Labels="{Binding Labels}"></lvc:Axis>
                 </lvc:CartesianChart.AxisX>
-
             </lvc:CartesianChart >
+            
         </Grid>
+        
     </DockPanel>
 
 </Window>

@@ -92,7 +92,6 @@ namespace Exchange
                 tbSecId.Text = _security.secId;
                 tbValToday.Text = mk[0].valToday.ToString();
                 tbLast.Text = mk[0].last.ToString();
-                tbValue.Text = mk[0].value.ToString();
                 tbVolToday.Text = mk[0].volToday.ToString();
                 tbLastChange.Text = mk[0].lastChange.ToString();
                 tbTime.Text = mk[0].time.ToString();
