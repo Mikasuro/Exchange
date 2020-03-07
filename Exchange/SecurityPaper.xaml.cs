@@ -12,6 +12,9 @@ using System.Linq;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Globalization;
+using Microsoft.ML;
+using Microsoft.ML.Transforms.TimeSeries;
+using System.Collections.Generic;
 
 namespace Exchange
 {
@@ -107,5 +110,26 @@ namespace Exchange
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            HistoryLoader history = new HistoryLoader();
+            var hs = history.LoadHistory(_security.secId, DateTime.Today.AddDays(-60).ToString("yyyy-MM-dd").Replace('.', '-'), DateTime.Today.ToString("yyyy-MM-dd").Replace('.', '-'));
+            var prices = hs.Select(p => (float)p.close).ToArray();
+            var ml = new MLContext();
+            
+            var dataView = ml.Data.LoadFromEnumerable(hs);
+            var inputColumnName = "floatClose";
+            var outputColumnName = nameof(ForecastResult.Forecast);
+            var model = ml.Forecasting.ForecastBySsa(outputColumnName,inputColumnName, 10, 20, prices.Length, 5);
+            var transformer = model.Fit(dataView);
+            var forecastEngine = transformer.CreateTimeSeriesEngine<History,ForecastResult>(ml);
+            var forecast = forecastEngine.Predict();
+        }
+        class ForecastResult
+        {
+            public float[] Forecast { get; set; }
+        }
+
     }
 }

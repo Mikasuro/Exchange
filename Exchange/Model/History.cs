@@ -10,6 +10,7 @@ namespace Exchange.Model
     {
         public string secId { get; set; }
         public double close { get; set; }
+        public float floatClose { get { return (float)close; } }
         public string tradeDate { get; set; }
     }
 }

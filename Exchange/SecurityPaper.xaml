@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Window1" Height="549" Width="866">
     <DockPanel>
-        <Grid >
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="220"/>
                 <ColumnDefinition Width="*"/>
@@ -42,7 +42,7 @@
             <UniformGrid Grid.Column="1" Grid.Row="7" Height="30" Columns="3">
                 <Button Content="На завтра"/>
                 <Button Content="На неделю"/>
-                <Button Content="На две недели"/>
+                <Button Content="На две недели" Click="Button_Click"/>
             </UniformGrid>
             <TextBlock Grid.Column="0" Grid.Row="7" Text="Прогноз" FontSize="20"/>
             <lvc:CartesianChart Series="{Binding SeriesCollection}" Grid.Row="9" Margin="8" Grid.ColumnSpan="2">
