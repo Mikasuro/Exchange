@@ -32,7 +32,7 @@ namespace Exchange
         public Func<double, string> XFormatter { get; set; } =
             value =>
             {
-                if (value >= 0) { return new System.DateTime((long)(value * TimeSpan.FromDays(1).Ticks)).ToString("dd.MM"); }
+                if (value >= 0) { return new System.DateTime((long)(value * TimeSpan.FromDays(1).Ticks)).ToString("dd MMM"); }
                 return "";
             };
 
@@ -75,15 +75,6 @@ namespace Exchange
                 Value = s.close
             }).ToArray();
 
-            var date = hs.Select(
-                d => DateTime.ParseExact(d.tradeDate, "yyyy-MM-dd", CultureInfo.InvariantCulture).ToString("dd MMM")
-                )
-                .ToArray();
-            var length = date.Length;
-            for (int i = 0; i < date.Length; i++) {
-
-            }
-            //Labels = date;
             Dispatcher.Invoke(() =>
             {
                 var series = new LineSeries
@@ -93,10 +84,8 @@ namespace Exchange
                     PointGeometrySize = 3,
                     PointForeground = Brushes.Gray
                 };
-
                 series.Values = new ChartValues<DateModel>(prices);
                 SeriesCollection.Add(series);
-
             });
         }
 
@@ -140,7 +129,6 @@ namespace Exchange
             var forecastEngine = transformer.CreateTimeSeriesEngine<History, ForecastResult>(ml);
             var forecast = forecastEngine.Predict();
 
-
             //последняя точка основного графика:
             var lastHistoryPoint = new DateModel { DateTime = currentDate = DateTime.Parse(hs.Last().tradeDate), Value = hs.Last().floatClose };
 
@@ -155,17 +143,16 @@ namespace Exchange
                 
                 var forecastSeries = new LineSeries
                 {
-
                     Title = "Прогноз",
                     LineSmoothness = 0,
                     PointGeometrySize = 3,
                     PointForeground = Brushes.Red,
-
                 };
                 forecastSeries.Values = new ChartValues<DateModel>(predictedPrices);
                 SeriesCollection.Add(forecastSeries);
             });
         }
+
         class ForecastResult
         {
             public float[] Forecast { get; set; }
