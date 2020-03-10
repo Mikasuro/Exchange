@@ -141,7 +141,7 @@ namespace Exchange
             var forecast = forecastEngine.Predict();
 
 
-            //последняя точка основного графика:
+            //последняя точка основного графика1:
             var lastHistoryPoint = new DateModel { DateTime = currentDate = DateTime.Parse(hs.Last().tradeDate), Value = hs.Last().floatClose };
 
             Dispatcher.Invoke(() =>
