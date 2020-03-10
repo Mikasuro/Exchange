@@ -26,7 +26,6 @@ namespace Exchange
     {
         private List<Security> _securities;
         private List<Security> _securitiesFiltr;
-        private List<History> _histories;
 
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

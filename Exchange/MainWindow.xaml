@@ -27,7 +27,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="*" Binding="{Binding secId}"/>
                 <DataGridTextColumn Header="Название" Width="*" Binding="{Binding secName}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Цена" Width="200" Binding="{Binding close}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Цена" Width="200" IsReadOnly="True"/>
                 <DataGridTemplateColumn Header="Перейти">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
