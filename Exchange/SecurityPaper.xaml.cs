@@ -117,7 +117,6 @@ namespace Exchange
             var hs = history.LoadHistory(_security.secId, DateTime.Today.AddDays(-60).ToString("yyyy-MM-dd").Replace('.', '-'), DateTime.Today.ToString("yyyy-MM-dd").Replace('.', '-'));
             var prices = hs.Select(p => (float)p.close).ToArray();
             var ml = new MLContext();
-            
             var dataView = ml.Data.LoadFromEnumerable(hs);
             var inputColumnName = "floatClose";
             var outputColumnName = nameof(ForecastResult.Forecast);
@@ -125,6 +124,18 @@ namespace Exchange
             var transformer = model.Fit(dataView);
             var forecastEngine = transformer.CreateTimeSeriesEngine<History,ForecastResult>(ml);
             var forecast = forecastEngine.Predict();
+            Dispatcher.Invoke(() =>
+            {
+                var forecastSeries = new LineSeries
+                {
+                    Title = "Forecast",
+                    LineSmoothness = 0,
+                    PointGeometrySize = 3,
+                    PointForeground = Brushes.Red
+                };
+                forecastSeries.Values = new ChartValues<float>(forecast.Forecast);
+                SeriesCollection.Add(forecastSeries);
+            });
         }
         class ForecastResult
         {
