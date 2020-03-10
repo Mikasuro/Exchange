@@ -88,7 +88,7 @@ namespace Exchange
             {
                 var series = new LineSeries
                 {
-                    Title = "Prices",
+                    Title = "Цена",
                     LineSmoothness = 0,
                     PointGeometrySize = 3,
                     PointForeground = Brushes.Gray
@@ -171,5 +171,14 @@ namespace Exchange
             public float[] Forecast { get; set; }
         }
 
+        private void Window_TargetUpdated(object sender, System.Windows.Data.DataTransferEventArgs e)
+        {
+
+        }
+
+        private void Window_SourceUpdated(object sender, System.Windows.Data.DataTransferEventArgs e)
+        {
+
+        }
     }
 }

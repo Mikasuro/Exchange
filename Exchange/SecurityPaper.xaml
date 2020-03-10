@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:lvc ="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         mc:Ignorable="d"
-        Title="Window1" Height="549" Width="866">
+        Title= "Ценная бумага"  Height="549" Width="866">
     <DockPanel>
         <Grid>
             <Grid.ColumnDefinitions>

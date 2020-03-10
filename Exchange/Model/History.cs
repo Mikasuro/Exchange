@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Exchange.Model
 {
-    class History
+    public class History
     {
         public string secId { get; set; }
         public double close { get; set; }
