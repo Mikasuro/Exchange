@@ -74,32 +74,9 @@ namespace JSON
             }
             else
             {
-                int threadCount = Environment.ProcessorCount * 10;
-                ThreadPool.SetMinThreads(threadCount, threadCount);
-                DateTime dt = DateTime.Now;
-                for (int i = 0; ; i += 100 * threadCount)
-                {
-                    bool hasEmpty = false;
-                    var allTasks = new Task<Security[]>[threadCount];
-                    Parallel.For(0, threadCount, (j) =>
-                    {
-                        allTasks[j] = Task.Run<Security[]>(() => LoadSecuritiesFrom(i + j * 100));
-                    });
-                    foreach (var item in allTasks)
-                    {
-                        if (item.Result.Length == 0)
-                        {
-                            hasEmpty = true;
-                            break;
-                        }
-                        securities.AddRange(item.Result);
-                    }
-                    if (hasEmpty) { break; }
-                }
-                Console.WriteLine(securities.Count);
+                securities = LoadSecuritiesFrom(0).ToList();
                 string file = JsonConvert.SerializeObject(securities);
                 File.WriteAllText("sec.txt", file);
-                Console.WriteLine((dt - DateTime.Now).TotalSeconds);
             }
         }
 

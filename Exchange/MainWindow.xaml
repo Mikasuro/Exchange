@@ -30,13 +30,12 @@
                 <DataGridTemplateColumn Header="Перейти">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                                <Button Content="Перейти" Click="Button_Click"/>
+                            <Button Content="Перейти" Click="Button_Click"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        
     </DockPanel>
 
 </Window>
