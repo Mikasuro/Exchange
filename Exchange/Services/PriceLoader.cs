@@ -18,7 +18,7 @@ namespace Exchange.Services
             return MoexDownloader.Load(url);
         }
 
-        public CurrentPrice[] LoadPrices(int start)
+        public CurrentPrice[] LoadPrices(int start)//
         {
             var result = LoadPriceFrom(start);
             var root = JsonConvert.DeserializeAnonymousType(result, new { CurrentPrices = new RootObject() });
