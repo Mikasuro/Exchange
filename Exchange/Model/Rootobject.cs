@@ -9,6 +9,6 @@ namespace Exchange.Model
     class RootObject
     {
         public string[] columns { get; set; }
-        public object[][] data { get; set; }//
+        public object[][] data { get; set; }
     }
 }
