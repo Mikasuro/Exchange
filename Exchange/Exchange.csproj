@@ -101,9 +101,11 @@
     </ApplicationDefinition>
     <Compile Include="Model\CurrentPrice.cs" />
     <Compile Include="Model\CurrentPrices.cs" />
+    <Compile Include="Model\SecDescription.cs" />
     <Compile Include="Model\History.cs" />
     <Compile Include="Model\Marketdata.cs" />
     <Compile Include="Model\RootObject.cs" />
+    <Compile Include="Model\SecDescriptionContext.cs" />
     <Compile Include="Model\Trades.cs" />
     <Compile Include="Services\HistoryLoader.cs" />
     <Compile Include="Services\HttpDownloader.cs" />
@@ -174,6 +176,12 @@
   <ItemGroup>
     <PackageReference Include="LiveCharts.Wpf">
       <Version>0.9.7</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Core">
+      <Version>2.1.14</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer">
+      <Version>2.1.14</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.ML">
       <Version>1.4.0</Version>
